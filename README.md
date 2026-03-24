@@ -38,6 +38,15 @@ Sistema de configuración optimizado para Claude Desktop que:
 
 ### 1. Instalar Configuraciones
 
+**Windows (PowerShell):**
+```powershell
+# Copiar configs a tu directorio .claude
+Copy-Item configs/global.md $HOME\.claude\ -Force
+Copy-Item configs/.claudeignore $HOME\.claude\ -Force
+Copy-Item -Recurse configs/skills/smart-init $HOME\.claude\skills\ -Force
+```
+
+**Mac/Linux:**
 ```bash
 # Copiar configs a tu directorio .claude
 cp configs/global.md ~/.claude/
