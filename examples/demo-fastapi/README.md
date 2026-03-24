@@ -1,116 +1,116 @@
 # demo-fastapi
 
-REST API CRUD con FastAPI, SQLAlchemy y SQLite. Gestiona usuarios e items.
+CRUD REST API with FastAPI, SQLAlchemy, and SQLite. Manages users and items.
 
-## Descripción
+## Description
 
-API RESTful que demuestra un setup típico de proyecto Python con FastAPI:
-- Usuarios con nombre y email
-- Items asociados a usuarios
-- Base de datos SQLite con SQLAlchemy ORM
-- Tests con pytest y TestClient
+A RESTful API demonstrating a typical Python project setup with FastAPI:
+- Users with name and email
+- Items associated with users
+- SQLite database with SQLAlchemy ORM
+- Tests with pytest and TestClient
 
-## Requisitos
+## Requirements
 
 - Python 3.11+
 - pip
 
-## Instalación
+## Installation
 
 ```bash
-# Crear entorno virtual
+# Create virtual environment
 python -m venv .venv
 source .venv/bin/activate   # Linux/Mac
 .venv\Scripts\activate      # Windows
 
-# Instalar dependencias
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-## Variables de entorno
+## Environment Variables
 
 ```bash
 cp .env.example .env
-# Edita .env según tu entorno
+# Edit .env for your environment
 ```
 
-## Uso
+## Usage
 
 ```bash
-# Servidor de desarrollo
+# Development server
 uvicorn src.main:app --reload
 
-# Documentación interactiva (Swagger)
+# Interactive docs (Swagger)
 # http://localhost:8000/docs
 
-# Documentación alternativa (ReDoc)
+# Alternative docs (ReDoc)
 # http://localhost:8000/redoc
 ```
 
 ## Tests
 
 ```bash
-# Todos los tests
+# All tests
 pytest tests/
 
-# Con cobertura
+# With coverage
 pytest tests/ --cov=src
 
-# Un test específico
+# A specific test
 pytest tests/test_users.py::test_create_user -v
 ```
 
 ## Endpoints
 
-### Usuarios
+### Users
 
-| Método | Ruta | Descripción |
+| Method | Path | Description |
 |--------|------|-------------|
-| GET | /users | Listar todos los usuarios |
-| GET | /users/{id} | Obtener usuario por ID |
-| POST | /users | Crear usuario |
-| PUT | /users/{id} | Actualizar usuario |
-| DELETE | /users/{id} | Eliminar usuario |
+| GET | /users | List all users |
+| GET | /users/{id} | Get user by ID |
+| POST | /users | Create user |
+| PUT | /users/{id} | Update user |
+| DELETE | /users/{id} | Delete user |
 
 ### Items
 
-| Método | Ruta | Descripción |
+| Method | Path | Description |
 |--------|------|-------------|
-| GET | /items | Listar todos los items |
-| GET | /items/{id} | Obtener item por ID |
-| POST | /items | Crear item |
-| PUT | /items/{id} | Actualizar item |
-| DELETE | /items/{id} | Eliminar item |
+| GET | /items | List all items |
+| GET | /items/{id} | Get item by ID |
+| POST | /items | Create item |
+| PUT | /items/{id} | Update item |
+| DELETE | /items/{id} | Delete item |
 
-## Estructura del proyecto
+## Project Structure
 
 ```
 src/
-├── main.py         # App FastAPI, middlewares, lifespan
+├── main.py         # FastAPI app, middlewares, lifespan
 ├── models.py       # Pydantic schemas + SQLAlchemy models
-├── database.py     # Configuración DB, sesión
+├── database.py     # DB configuration, session
 └── routers/
-    ├── users.py    # Endpoints /users
-    └── items.py    # Endpoints /items
+    ├── users.py    # /users endpoints
+    └── items.py    # /items endpoints
 
 tests/
-├── conftest.py     # Fixtures compartidos
-├── test_users.py   # Tests de usuarios
-└── test_items.py   # Tests de items
+├── conftest.py     # Shared fixtures
+├── test_users.py   # User tests
+└── test_items.py   # Item tests
 ```
 
-## Decisiones técnicas
+## Technical Decisions
 
-- **SQLite**: simplicidad para demo; cambiar a PostgreSQL en producción
-- **TestClient**: tests síncronos sin overhead de servidor real
-- **Lifespan**: inicialización de tablas al arrancar la app
-- **Depends()**: inyección de dependencia para la sesión de DB
+- **SQLite**: simplicity for demo; switch to PostgreSQL in production
+- **TestClient**: synchronous tests without real server overhead
+- **Lifespan**: table initialization on app startup
+- **Depends()**: dependency injection for the DB session
 
 ## Stack
 
-- **FastAPI** 0.111+ — framework web
+- **FastAPI** 0.111+ — web framework
 - **SQLAlchemy** 2.0+ — ORM
-- **Pydantic** 2.0+ — validación de datos
-- **uvicorn** — servidor ASGI
+- **Pydantic** 2.0+ — data validation
+- **uvicorn** — ASGI server
 - **pytest** — testing
-- **httpx** — cliente HTTP para tests
+- **httpx** — HTTP client for tests

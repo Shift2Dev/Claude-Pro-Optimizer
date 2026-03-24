@@ -1,31 +1,31 @@
 # Workflow Demo
 
-Ejemplos reales de cómo usar Claude Pro Optimizer en tu día a día.
+Real examples of how to use Claude Pro Optimizer in your day-to-day work.
 
-## 🚀 Caso 1: Setup de Proyecto Nuevo
+## 🚀 Case 1: New Project Setup
 
-### Situación
+### Situation
 
-Inicias un nuevo proyecto FastAPI.
+You're starting a new FastAPI project.
 
-### Sin Optimización (15 minutos)
-
-```
-1. "Hola Claude, voy a crear un proyecto nuevo con FastAPI..."
-2. Crear estructura manual
-3. "Ahora necesito configuración de pytest..."
-4. "¿Qué comandos debo usar para...?"
-5. "Cómo configuro el linting..."
-6. [15 mensajes más configurando]
-```
-
-**Tiempo:** ~15 minutos  
-**Mensajes usados:** ~20
-
-### Con Optimización (30 segundos)
+### Without Optimization (15 minutes)
 
 ```
-# En tu proyecto vacío
+1. "Hi Claude, I'm going to create a new project with FastAPI..."
+2. Manually create structure
+3. "Now I need pytest configuration..."
+4. "What commands should I use for...?"
+5. "How do I configure linting..."
+6. [15 more setup messages]
+```
+
+**Time:** ~15 minutes
+**Messages used:** ~20
+
+### With Optimization (30 seconds)
+
+```
+# In your empty project
 /init
 ```
 
@@ -42,287 +42,287 @@ Detected:
 Ready to use!
 ```
 
-**Tiempo:** 30 segundos  
-**Mensajes usados:** 1
+**Time:** 30 seconds
+**Messages used:** 1
 
 ---
 
-## 💻 Caso 2: Debugging
+## 💻 Case 2: Debugging
 
-### Situación
+### Situation
 
-Tienes un error en tu código.
+You have an error in your code.
 
-### ❌ Ineficiente (5 mensajes)
-
-```
-1. "Hola Claude, tengo un problema en mi código"
-2. [Claude pregunta qué código]
-3. [Pegas 500 líneas]
-4. [Claude pregunta qué error]
-5. "Ah sí, es NameError en línea 42"
-```
-
-**Tokens gastados:** ~3,000
-
-### ✅ Eficiente (1 mensaje)
+### ❌ Inefficient (5 messages)
 
 ```
-Error en src/main.py línea 42:
+1. "Hi Claude, I have a problem in my code"
+2. [Claude asks what code]
+3. [You paste 500 lines]
+4. [Claude asks what error]
+5. "Oh right, it's a NameError on line 42"
+```
+
+**Tokens spent:** ~3,000
+
+### ✅ Efficient (1 message)
+
+```
+Error in src/main.py line 42:
 NameError: name 'process_data' is not defined
 
-Context: función `run_pipeline()`
+Context: inside function `run_pipeline()`
 ```
 
-**Tokens gastados:** ~100
+**Tokens spent:** ~100
 
-**Ahorro:** 96%
+**Savings:** 96%
 
 ---
 
-## 🔧 Caso 3: Refactoring
+## 🔧 Case 3: Refactoring
 
-### Situación
+### Situation
 
-Necesitas refactorizar código legacy.
+You need to refactor legacy code.
 
-### ❌ Ineficiente
+### ❌ Inefficient
 
 ```
-1. "Por favor revisa este archivo completo"
-   [Pega 1000 líneas]
-   
-2. "Ahora mejóralo"
-   [Claude pregunta qué mejorar]
-   
-3. "Todo, hazlo mejor"
-   [Resultado genérico]
+1. "Please review this entire file"
+   [Paste 1000 lines]
+
+2. "Now improve it"
+   [Claude asks what to improve]
+
+3. "Everything, make it better"
+   [Generic result]
 ```
 
-### ✅ Eficiente
+### ✅ Efficient
 
 ```
 Refactor src/legacy.py:
-- Extraer validación a función separada (líneas 50-80)
-- Convertir clase DataProcessor a funciones puras
-- Añadir type hints
+- Extract validation into a separate function (lines 50-80)
+- Convert DataProcessor class to pure functions
+- Add type hints
 
-Focus: mantenibilidad, no performance
+Focus: maintainability, not performance
 ```
 
-**Resultado:** Refactor específico y útil.
+**Result:** Specific, useful refactor.
 
 ---
 
-## 📝 Caso 4: Documentation
+## 📝 Case 4: Documentation
 
-### Situación
+### Situation
 
-Documentar función compleja.
+Documenting a complex function.
 
 ### ❌ Verbose
 
 ```
-"Hola Claude, necesito que me ayudes a documentar esta función.
-Es muy importante que la documentación sea clara y completa,
-con todos los parámetros explicados, el return value, ejemplos
-de uso, y también casos edge. La función se llama calculate_metrics
-y está en el archivo analytics.py..."
+"Hi Claude, I need you to help me document this function.
+It's very important that the documentation is clear and complete,
+with all parameters explained, the return value, usage examples,
+and also edge cases. The function is called calculate_metrics
+and it's in the analytics.py file..."
 ```
 
 **Tokens:** ~150
 
-### ✅ Conciso
+### ✅ Concise
 
 ```
-Documenta `calculate_metrics()` en analytics.py:
-- Docstring con params, return, ejemplos
+Document `calculate_metrics()` in analytics.py:
+- Docstring with params, return, examples
 - Type hints
 ```
 
 **Tokens:** ~30
 
-**Ahorro:** 80%
+**Savings:** 80%
 
 ---
 
-## 🎯 Caso 5: Code Review
+## 🎯 Case 5: Code Review
 
-### Situación
+### Situation
 
-Revisar PR antes de merge.
+Reviewing a PR before merge.
 
-### Sin .claudeignore (MALO)
+### Without .claudeignore (BAD)
 
 ```
-/view .  # Lee TODO el proyecto
+/view .  # Reads the ENTIRE project
 ```
 
-**Archivos leídos:** 5,000+  
-**Contexto:** Lleno inmediatamente  
-**Resultado:** "Context limit exceeded"
+**Files read:** 5,000+
+**Context:** Immediately full
+**Result:** "Context limit exceeded"
 
-### Con .claudeignore (BIEN)
+### With .claudeignore (GOOD)
 
 ```
 /view src/
 /view tests/
 ```
 
-**Archivos leídos:** 50  
-**Contexto:** 30%  
-**Resultado:** Review útil
+**Files read:** 50
+**Context:** 30%
+**Result:** Useful review
 
 ---
 
-## 🔄 Caso 6: Conversación Larga
+## 🔄 Case 6: Long Conversation
 
-### Situación
+### Situation
 
-Debugging session de 30 mensajes.
+A 30-message debugging session.
 
-### Sin Gestión
-
-```
-Mensaje 25: "Context almost full"
-Mensaje 26: [Error, no puede procesar]
-```
-
-**Solución:** Nueva conversación, perder contexto.
-
-### Con /compact
+### Without Management
 
 ```
-Mensaje 10: /compact
-# Continúa...
-
-Mensaje 20: /compact
-# Continúa...
-
-Mensaje 30: Debugging completado con contexto intacto
+Message 25: "Context almost full"
+Message 26: [Error, cannot process]
 ```
 
-**Resultado:** Conversación fluida sin límites.
+**Solution:** New conversation, lose context.
+
+### With /compact
+
+```
+Message 10: /compact
+# Continue...
+
+Message 20: /compact
+# Continue...
+
+Message 30: Debugging completed with context intact
+```
+
+**Result:** Smooth conversation without limits.
 
 ---
 
-## 💡 Caso 7: Quick Questions
+## 💡 Case 7: Quick Questions
 
-### Situación
+### Situation
 
-Pregunta rápida sin contexto necesario.
+A quick question with no context needed.
 
 ### ❌ Normal
 
 ```
-"¿Cómo se hace un loop en Python?"
-# Usa contexto completo de conversación actual
+"How do you write a loop in Python?"
+# Uses the full context of the current conversation
 ```
 
-### ✅ Con /btw
+### ✅ With /btw
 
 ```
-/btw ¿Cómo se hace un loop en Python?
-# NO usa contexto, respuesta rápida
+/btw How do you write a loop in Python?
+# Does NOT use context, fast response
 ```
 
-**Ahorro:** No contamina conversación actual.
+**Savings:** Doesn't pollute the current conversation.
 
 ---
 
-## 🎨 Caso 8: Batch Operations
+## 🎨 Case 8: Batch Operations
 
-### Situación
+### Situation
 
-Crear múltiples funciones relacionadas.
+Creating multiple related functions.
 
-### ❌ Secuencial (3 mensajes)
-
-```
-1. "Crea función suma"
-2. "Ahora función resta"
-3. "Ahora función multiplica"
-```
-
-**Tokens:** ~300  
-**Tiempo:** 3x latencia
-
-### ✅ Batched (1 mensaje)
+### ❌ Sequential (3 messages)
 
 ```
-Crea módulo math_ops.py:
-- suma(a, b)
-- resta(a, b)
-- multiplica(a, b)
+1. "Create sum function"
+2. "Now subtract function"
+3. "Now multiply function"
+```
+
+**Tokens:** ~300
+**Time:** 3x latency
+
+### ✅ Batched (1 message)
+
+```
+Create module math_ops.py:
+- sum(a, b)
+- subtract(a, b)
+- multiply(a, b)
 
 Type hints, docstrings, tests
 ```
 
-**Tokens:** ~100  
-**Tiempo:** 1x latencia
+**Tokens:** ~100
+**Time:** 1x latency
 
 ---
 
-## 📊 Comparativa de Día Típico
+## 📊 Typical Day Comparison
 
-### Antes de Optimizar
-
-```
-09:00 - Setup proyecto (20 mensajes)
-10:30 - Debugging (15 mensajes)
-12:00 - Code review (25 mensajes)
-14:00 - Hit límite diario ❌
-```
-
-**Total:** 60 mensajes, límite alcanzado
-
-### Después de Optimizar
+### Before Optimizing
 
 ```
-09:00 - /init (1 mensaje)
-09:30 - Debugging eficiente (5 mensajes)
-10:00 - Code review con .claudeignore (8 mensajes)
-11:00 - Features nuevas (20 mensajes)
-14:00 - Refactoring (15 mensajes)
-16:00 - Documentation (10 mensajes)
-17:00 - Todavía con margen ✅
+09:00 - Project setup (20 messages)
+10:30 - Debugging (15 messages)
+12:00 - Code review (25 messages)
+14:00 - Hit daily limit ❌
 ```
 
-**Total:** ~60 mensajes, mucho más productivos
+**Total:** 60 messages, limit reached
+
+### After Optimizing
+
+```
+09:00 - /init (1 message)
+09:30 - Efficient debugging (5 messages)
+10:00 - Code review with .claudeignore (8 messages)
+11:00 - New features (20 messages)
+14:00 - Refactoring (15 messages)
+16:00 - Documentation (10 messages)
+17:00 - Still with headroom ✅
+```
+
+**Total:** ~60 messages, much more productive
 
 ---
 
-## 🎯 Template de Mensaje Eficiente
+## 🎯 Efficient Message Template
 
 ```markdown
-[Acción específica] [Ubicación precisa]:
+[Specific action] [Precise location]:
 - [Requirement 1]
 - [Requirement 2]
 
-[Constraint importante si existe]
+[Important constraint if any]
 ```
 
-**Ejemplos:**
+**Examples:**
 
 ```
-Fix bug src/api.py línea 89:
-- IndexError en loop
-- Manejar lista vacía
+Fix bug src/api.py line 89:
+- IndexError in loop
+- Handle empty list
 
-Mantener backward compatibility
+Maintain backward compatibility
 ```
 
 ```
 Refactor components/Header.tsx:
-- Extraer logic a hooks
-- Memoizar renders pesados
+- Extract logic to hooks
+- Memoize expensive renders
 
-Performance crítico
+Performance is critical
 ```
 
 ```
 Test calculator.py:
-- Edge cases (división por cero, overflow)
+- Edge cases (division by zero, overflow)
 - Property-based testing
 
 Pytest + hypothesis
@@ -330,27 +330,27 @@ Pytest + hypothesis
 
 ---
 
-## ✅ Checklist Diario
+## ✅ Daily Checklist
 
-**Al empezar:**
-- [ ] Revisar límites disponibles
-- [ ] Configurar .claudeignore si proyecto nuevo
-- [ ] Ejecutar /init si necesario
+**At the start:**
+- [ ] Check available limits
+- [ ] Configure .claudeignore if new project
+- [ ] Run /init if needed
 
-**Durante trabajo:**
-- [ ] Mensajes específicos y concisos
-- [ ] Usar /btw para quick questions
-- [ ] Batch operations relacionadas
-- [ ] /compact cada 10-15 mensajes
+**During work:**
+- [ ] Specific, concise messages
+- [ ] Use /btw for quick questions
+- [ ] Batch related operations
+- [ ] /compact every 10-15 messages
 
-**Al terminar:**
-- [ ] /compact si conversación larga
-- [ ] Exportar decisiones importantes
-- [ ] Revisar uso del día
+**At the end:**
+- [ ] /compact if conversation was long
+- [ ] Export important decisions
+- [ ] Review daily usage
 
 ---
 
-## 📚 Recursos
+## 📚 Resources
 
 - [Token Optimization Theory](../docs/token-optimization-theory.md)
 - [Setup Guide](../docs/setup-guide.md)
@@ -358,4 +358,4 @@ Pytest + hypothesis
 
 ---
 
-**Pro tip:** Guarda este workflow demo como referencia. La eficiencia se construye con práctica. 🚀
+**Pro tip:** Save this workflow demo as a reference. Efficiency is built with practice. 🚀
