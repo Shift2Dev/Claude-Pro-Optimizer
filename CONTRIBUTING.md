@@ -1,37 +1,37 @@
-# Contribuir a Claude Pro Optimizer
+# Contributing to Claude Pro Optimizer
 
-¡Gracias por tu interés en contribuir! 🎉
+Thank you for your interest in contributing! 🎉
 
-## 🤝 Cómo Contribuir
+## 🤝 How to Contribute
 
-### 1. Fork y Clone
+### 1. Fork and Clone
 
 ```bash
-# Fork en GitHub, luego:
-git clone https://github.com/tu-usuario/claude-pro-optimizer.git
+# Fork on GitHub, then:
+git clone https://github.com/your-username/claude-pro-optimizer.git
 cd claude-pro-optimizer
 ```
 
-### 2. Crear Branch
+### 2. Create a Branch
 
 ```bash
 git checkout -b feat/amazing-feature
-# O
+# or
 git checkout -b fix/bug-description
-# O
+# or
 git checkout -b docs/improvement
 ```
 
-### 3. Hacer Cambios
+### 3. Make Changes
 
-- Mantén el estilo existente
-- Configs en `configs/`
-- Docs en `docs/`
-- Ejemplos en `examples/`
+- Keep the existing style
+- Configs go in `configs/`
+- Docs go in `docs/`
+- Examples go in `examples/`
 
 ### 4. Commit
 
-Usamos [Conventional Commits](https://www.conventionalcommits.org/):
+We use [Conventional Commits](https://www.conventionalcommits.org/):
 
 ```bash
 git commit -m "feat: add new optimization skill"
@@ -39,35 +39,35 @@ git commit -m "fix: correct smart-init detection"
 git commit -m "docs: improve setup guide"
 ```
 
-**Prefijos:**
-- `feat:` nueva funcionalidad
-- `fix:` corrección de bug
-- `docs:` cambios en documentación
-- `refactor:` refactoring sin cambios funcionales
-- `chore:` tareas de mantenimiento
+**Prefixes:**
+- `feat:` new feature
+- `fix:` bug fix
+- `docs:` documentation changes
+- `refactor:` refactoring without functional changes
+- `chore:` maintenance tasks
 
-### 5. Push y PR
+### 5. Push and PR
 
 ```bash
 git push origin feat/amazing-feature
 ```
 
-Luego abre un Pull Request en GitHub.
+Then open a Pull Request on GitHub.
 
-## 💡 Ideas de Contribución
+## 💡 Contribution Ideas
 
-### Skills Útiles
+### Useful Skills
 
-¿Tienes un skill custom que sea útil? Compártelo:
+Got a custom skill that others would find useful? Share it:
 
 ```
-configs/skills/tu-skill/
+configs/skills/your-skill/
 └── SKILL.md
 ```
 
-### Mejoras al .claudeignore
+### .claudeignore Improvements
 
-¿Tu stack necesita patrones específicos? Añádelos con comentarios:
+Does your stack need specific patterns? Add them with comments:
 
 ```gitignore
 # Framework X specific
@@ -75,17 +75,17 @@ configs/skills/tu-skill/
 *.framework-temp
 ```
 
-### Ejemplos Reales
+### Real-World Examples
 
-¿Usaste el optimizer de forma interesante? Documéntalo:
+Used the optimizer in an interesting way? Document it:
 
 ```
-examples/caso-uso-X.md
+examples/use-case-X.md
 ```
 
-### Optimizaciones Nuevas
+### New Optimizations
 
-¿Descubriste nueva técnica de eficiencia? Agrégala a:
+Found a new efficiency technique? Add it to:
 
 ```
 docs/token-optimization-theory.md
@@ -95,98 +95,97 @@ docs/token-optimization-theory.md
 
 ### Configs
 
-- Comentar decisiones no-obvias
-- Mantener formato consistente
-- Testear antes de commitear
+- Comment non-obvious decisions
+- Keep consistent formatting
+- Test before committing
 
-### Documentación
+### Documentation
 
-- Español para docs generales
-- Inglés para código/comentarios técnicos
-- Ejemplos concretos sobre teoría abstracta
+- English for all docs
+- Concrete examples over abstract theory
 - Markdown lint-free
 
 ### Skills
 
-- Nombre descriptivo y corto
-- Description clara del propósito
+- Short, descriptive name
+- Clear description of purpose
 - Smart defaults, no placeholders
-- Instrucciones específicas
+- Specific instructions
 
-## 🐛 Reportar Bugs
+## 🐛 Reporting Bugs
 
-Usa [GitHub Issues](../../issues) con:
+Use [GitHub Issues](../../issues) with:
 
 **Template:**
 
 ```markdown
-## Descripción
-[Qué no funciona]
+## Description
+[What isn't working]
 
-## Reproducir
-1. [Paso 1]
-2. [Paso 2]
-3. [Error aparece]
+## Steps to Reproduce
+1. [Step 1]
+2. [Step 2]
+3. [Error appears]
 
-## Esperado
-[Qué debería pasar]
+## Expected Behavior
+[What should happen]
 
-## Entorno
+## Environment
 - OS: [Windows 11 / macOS 14 / Ubuntu 22.04]
-- Claude Desktop: [versión]
-- Config: [qué configs tienes instaladas]
+- Claude Desktop: [version]
+- Config: [which configs you have installed]
 ```
 
-## 💭 Sugerir Features
+## 💭 Suggesting Features
 
 **Template:**
 
 ```markdown
-## Problema
-[Qué problema resuelve]
+## Problem
+[What problem this solves]
 
-## Solución Propuesta
-[Tu idea]
+## Proposed Solution
+[Your idea]
 
-## Alternativas
-[Otras opciones consideradas]
+## Alternatives
+[Other options considered]
 
-## Beneficio
-[Por qué es valioso]
+## Benefit
+[Why it's valuable]
 ```
 
-## ✅ Checklist PR
+## ✅ PR Checklist
 
-Antes de abrir PR, verifica:
+Before opening a PR, verify:
 
-- [ ] Código/configs funcionan localmente
-- [ ] Docs actualizadas si necesario
-- [ ] Commits siguen Conventional Commits
-- [ ] Branch actualizado con main
-- [ ] Descripción clara del cambio
+- [ ] Code/configs work locally
+- [ ] Docs updated if necessary
+- [ ] Commits follow Conventional Commits
+- [ ] Branch is up to date with main
+- [ ] Clear description of the change
 
-## 🎯 Código de Conducta
+## 🎯 Code of Conduct
 
-- Sé respetuoso y constructivo
-- Acepta críticas con apertura
-- Enfócate en el código/configs, no en las personas
-- Ayuda a crear ambiente de aprendizaje
-- Asume buena intención en otros contributors
+- Be respectful and constructive
+- Accept feedback openly
+- Focus on the code/configs, not the person
+- Help create a learning environment
+- Assume good intent from other contributors
 
-## 🌟 Reconocimiento
+## 🌟 Recognition
 
-Contributors serán mencionados en:
-- README.md (sección Contributors)
+Contributors will be mentioned in:
+- README.md (Contributors section)
 - CHANGELOG.md
 - Commit history
 
-## 🆘 ¿Necesitas Ayuda?
+## 🆘 Need Help?
 
-- Pregunta en [Discussions](../../discussions)
-- Abre [Issue](../../issues) con tu duda
-- Tag con `question` label
+- Ask in [Discussions](../../discussions)
+- Open an [Issue](../../issues) with your question
+- Tag with `question` label
 
-## 📚 Recursos
+## 📚 Resources
 
 - [Conventional Commits](https://www.conventionalcommits.org/)
 - [Markdown Guide](https://www.markdownguide.org/)
@@ -194,8 +193,8 @@ Contributors serán mencionados en:
 
 ---
 
-**¡Toda contribución, grande o pequeña, es valiosa!** 🚀
+**Every contribution, big or small, is valuable!** 🚀
 
-¿Dudas? Abre un issue. ¿Ideas? Abre una discussion. ¿Código listo? Abre un PR.
+Questions? Open an issue. Ideas? Start a discussion. Code ready? Open a PR.
 
-**Gracias por ayudar a mejorar Claude Pro Optimizer.** 🎉
+**Thanks for helping improve Claude Pro Optimizer.** 🎉
