@@ -1,46 +1,46 @@
 # Claude Pro Optimizer
 
-> Setup profesional para maximizar eficiencia en Claude Desktop y Claude Pro
+> Professional setup to maximize efficiency in Claude Desktop and Claude Pro
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## 🎯 El Problema
+## 🎯 The Problem
 
-Claude Pro tiene límites de mensajes diarios. Cada token cuenta.
+Claude Pro has daily message limits. Every token counts.
 
-**Prompts ineficientes = menos conversaciones útiles por día.**
+**Inefficient prompts = fewer useful conversations per day.**
 
-## 💡 La Solución
+## 💡 The Solution
 
-Sistema de configuración optimizado para Claude Desktop que:
+An optimized configuration system for Claude Desktop that:
 
-- ✅ **Reduce tokens por prompt** mediante configuración global
-- ✅ **Auto-genera project configs** con el skill `smart-init`
-- ✅ **Optimiza lectura de archivos** con `.claudeignore` balanceado
-- ✅ **Maximiza mensajes útiles** de tu plan Pro
+- ✅ **Reduces tokens per prompt** through global configuration
+- ✅ **Auto-generates project configs** with the `smart-init` skill
+- ✅ **Optimizes file reading** with a balanced `.claudeignore`
+- ✅ **Maximizes useful messages** from your Pro plan
 
-## 📊 Resultados
+## 📊 Results
 
-**Antes:**
-- Setup manual de proyectos: ~15 minutos
-- Prompts largos e ineficientes
-- Claude lee archivos innecesarios
-- Llegas al límite rápido
+**Before:**
+- Manual project setup: ~15 minutes
+- Long, inefficient prompts
+- Claude reads unnecessary files
+- You hit the limit fast
 
-**Después:**
-- Setup automático: <30 segundos (smart-init)
-- Prompts concisos y claros
-- Solo lee archivos relevantes
-- Más conversaciones útiles por día
+**After:**
+- Automatic setup: <30 seconds (smart-init)
+- Concise, clear prompts
+- Only reads relevant files
+- More useful conversations per day
 
 ## 🚀 Quick Start
 
-### 1. Instalar Configuraciones
+### 1. Install Configurations
 
 **Windows (PowerShell):**
 ```powershell
-# Copiar configs a tu directorio .claude
+# Copy configs to your .claude directory
 Copy-Item configs/global.md $HOME\.claude\ -Force
 Copy-Item configs/.claudeignore $HOME\.claude\ -Force
 Copy-Item -Recurse configs/skills/smart-init $HOME\.claude\skills\ -Force
@@ -48,178 +48,184 @@ Copy-Item -Recurse configs/skills/smart-init $HOME\.claude\skills\ -Force
 
 **Mac/Linux:**
 ```bash
-# Copiar configs a tu directorio .claude
+# Copy configs to your .claude directory
 cp configs/global.md ~/.claude/
 cp configs/.claudeignore ~/.claude/
 cp -r configs/skills/smart-init ~/.claude/skills/
 ```
 
-### 2. Usar Smart-Init
+### 2. Use Smart-Init
 
-En cualquier proyecto, escribe en Claude Desktop:
+In any project, type in Claude Desktop:
 
 ```
 /init
 ```
 
-El skill analizará tu codebase y generará automáticamente `.claude/CLAUDE.md` optimizado.
+The skill will analyze your codebase and automatically generate an optimized `.claude/CLAUDE.md`.
 
-### 3. Verificar
+### 3. Verify
 
 ```bash
-# Ver tu nueva configuración
+# View your new configuration
 cat .claude/CLAUDE.md
 ```
 
-## 📊 Demos Visuales
+## 📊 Visual Demos
 
-Todos los números son medidos en tiempo real leyendo los archivos reales de configuración y el filesystem. Sin estimaciones.
+All numbers are measured in real time by reading the actual configuration files and filesystem. No estimates.
 
-![Resumen de impacto total — proyecto FastAPI real](examples/demo-fastapi/charts/chart_summary.png)
+![Total impact summary — real FastAPI project](examples/demo-fastapi/charts/chart_summary.png)
 
-Cada tool demuestra el impacto de uno de los 3 configs:
+Each tool demonstrates the impact of one of the 3 configs:
 
-| Config | Qué mide |
+| Config | What it measures |
 |---|---|
-| `.claudeignore` | Tokens filtrados del filesystem (scan real del proyecto) |
-| `global.md` | Tokens inyectados automáticamente × conversaciones/mes |
-| `smart-init` | Tokens de "discovery" reemplazados por un CLAUDE.md compacto |
+| `.claudeignore` | Tokens filtered from the filesystem (real project scan) |
+| `global.md` | Tokens automatically injected × conversations/month |
+| `smart-init` | "Discovery" tokens replaced by a compact CLAUDE.md |
 
-### Vista previa por config
+### Preview by config
 
-![.claudeignore — tokens filtrados](examples/demo-fastapi/charts/chart_claudeignore.png)
-![global.md — ahorro mensual acumulado](examples/demo-fastapi/charts/chart_global_md.png)
+![.claudeignore — filtered tokens](examples/demo-fastapi/charts/chart_claudeignore.png)
+![global.md — cumulative monthly savings](examples/demo-fastapi/charts/chart_global_md.png)
 ![smart-init — discovery vs CLAUDE.md](examples/demo-fastapi/charts/chart_smart_init.png)
 
-> Proyecto de ejemplo: [demo-fastapi](examples/demo-fastapi/) — FastAPI + SQLAlchemy + pytest
+> Example project: [demo-fastapi](examples/demo-fastapi/) — FastAPI + SQLAlchemy + pytest
 
-### Medir savings en terminal
+### Measure savings in the terminal
 
 ```bash
-# Analiza directorio actual
+# Analyze current directory
 python tools/token_analyzer.py
 
-# Analiza cualquier proyecto
-python tools/token_analyzer.py /ruta/a/tu/proyecto
+# Analyze any project
+python tools/token_analyzer.py /path/to/your/project
 ```
 
-### Ver comparativa interactiva
+### Interactive comparison
 
 ```bash
-python tools/visual_comparison.py --project /ruta/a/tu/proyecto
+python tools/visual_comparison.py --project /path/to/your/project
 ```
 
-### Generar gráficos PNG
+### Generate PNG charts
 
 ```bash
 pip install matplotlib numpy
-python tools/generate_charts.py --project /ruta/a/tu/proyecto
+python tools/generate_charts.py --project /path/to/your/project
 ```
 
-Crea 3 gráficos, uno por config:
-- `chart_claudeignore.png` - tokens filtrados y distribución del contexto
-- `chart_global_md.png` - ahorro mensual acumulado por conversación
-- `chart_smart_init.png` - discovery files vs CLAUDE.md por conversación
+Generates 3 charts, one per config:
+- `chart_claudeignore.png` - filtered tokens and context distribution
+- `chart_global_md.png` - cumulative monthly savings per conversation
+- `chart_smart_init.png` - discovery files vs CLAUDE.md per conversation
 
-## 📂 Qué Incluye
+## 📂 What's Included
 
-### Configs Principales
+> **Note:** Configuration files (`global.md`, `smart-init`) are provided as examples 
+> in Spanish (my personal setup). Claude understands any language—feel free to 
+> customize them to your preference.
 
-- **`global.md`** - Preferencias personales y optimización de tokens
-  - Español/inglés según contexto
-  - Principios de código funcional
+### Core Configs
+
+- **`global.md`** - Personal preferences and token optimization
+  - Spanish/English based on context (example config)
+  - Functional programming principles
   - Token efficiency rules
-  - Workflow optimizado
+  - Optimized workflow
 
-- **`.claudeignore`** - Gitignore balanceado
-  - Bloquea ruido (node_modules, logs, cache)
-  - Permite archivos build cuando son necesarios
-  - Optimizado para reducir contexto innecesario
+- **`.claudeignore`** - Balanced gitignore
+  - Blocks noise (node_modules, logs, cache)
+  - Allows build files when needed
+  - Optimized to reduce unnecessary context
 
-- **`smart-init/`** - Skill de auto-setup
-  - Detecta stack automáticamente
-  - Genera CLAUDE.md completo
-  - Extrae comandos de package.json/pyproject.toml
-  - Zero placeholders, 100% funcional
+- **`smart-init/`** - Auto-setup skill
+  - Automatically detects stack
+  - Generates complete CLAUDE.md
+  - Extracts commands from package.json/pyproject.toml
+  - Zero placeholders, 100% functional
+  - (Instructions in Spanish, customize to your language)
 
-### Tools Opcionales
+### Optional Tools
 
-- **`prompt_optimizer.py`** - Script Python para analizar y comprimir prompts
-- **`context_manager.py`** - Gestión de contexto en conversaciones largas
+- **`token_analyzer.py`** - Measures real token savings per config
+- **`visual_comparison.py`** - Interactive terminal comparison
+- **`generate_charts.py`** - Generates PNG charts per config
 
-## 🎓 Guías
+## 🎓 Guides
 
-- [Setup Guide](docs/setup-guide.md) - Cómo instalar paso a paso
-- [Token Optimization](docs/token-optimization-theory.md) - Principios de eficiencia
-- [Creating Skills](docs/creating-skills.md) - Guía para crear tus propios skills
-- [Workflow Demo](examples/workflow-demo.md) - Ejemplos de uso real
+- [Setup Guide](docs/setup-guide.md) - Step-by-step installation
+- [Token Optimization](docs/token-optimization-theory.md) - Efficiency principles
+- [Creating Skills](docs/creating-skills.md) - Guide to creating your own skills
+- [Workflow Demo](examples/workflow-demo.md) - Real usage examples
 
-## 💪 Casos de Uso
+## 💪 Use Cases
 
-### Para Developers
+### For Developers
 
-- Setup instantáneo de proyectos nuevos
-- Configuración consistente entre proyectos
-- Menos tiempo configurando, más tiempo desarrollando
+- Instant setup for new projects
+- Consistent configuration across projects
+- Less time configuring, more time building
 
-### Para Usuarios de Claude Pro
+### For Claude Pro Users
 
-- Maximizar mensajes diarios
-- Prompts más eficientes
-- Mejor aprovechamiento del plan
+- Maximize daily messages
+- More efficient prompts
+- Better value from your plan
 
-### Para Equipos
+### For Teams
 
-- Configuración estándar compartida
-- Onboarding más rápido
-- Best practices automáticas
+- Shared standard configuration
+- Faster onboarding
+- Automatic best practices
 
 ## 🛠️ Tech Stack
 
 - **Config**: Markdown, Custom Skills
-- **Tools**: Python 3.8+ (opcional)
+- **Tools**: Python 3.8+ (optional)
 - **Platform**: Claude Desktop / Claude.ai
 
-## 📝 Filosofía
+## 📝 Philosophy
 
-### Principios de Diseño
+### Design Principles
 
 1. **Token Efficiency First**
-   - Cada token cuenta en Claude Pro
-   - Optimizar sin perder claridad
-   - Batching de operaciones relacionadas
+   - Every token counts in Claude Pro
+   - Optimize without sacrificing clarity
+   - Batch related operations
 
 2. **Automation Over Manual**
-   - Auto-detectar en vez de preguntar
-   - Generar en vez de plantillas vacías
-   - Smart defaults sobre configuración manual
+   - Auto-detect instead of asking
+   - Generate instead of empty templates
+   - Smart defaults over manual configuration
 
 3. **Balanced Ignorance**
-   - Ignorar ruido (logs, cache, node_modules)
-   - Leer lo necesario (build/, dist/ cuando relevante)
-   - Contextual, no absoluto
+   - Ignore noise (logs, cache, node_modules)
+   - Read what's needed (build/, dist/ when relevant)
+   - Contextual, not absolute
 
-## 🤝 Contribuir
+## 🤝 Contributing
 
-¿Tienes un skill útil? ¿Mejoras al gitignore? ¿Nuevas estrategias de optimización?
+Got a useful skill? Improvements to the gitignore? New optimization strategies?
 
-1. Fork el repo
-2. Crea tu feature branch (`git checkout -b feat/amazing-skill`)
-3. Commit con convención (`git commit -m 'feat: add amazing skill'`)
-4. Push y abre PR
+1. Fork the repo
+2. Create your feature branch (`git checkout -b feat/amazing-skill`)
+3. Commit with convention (`git commit -m 'feat: add amazing skill'`)
+4. Push and open a PR
 
-Ver [CONTRIBUTING.md](CONTRIBUTING.md) para más detalles.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ## ⚠️ Disclaimer
 
-Este es mi setup personal que uso diariamente y comparto con la comunidad. 
+This is my personal setup that I use daily and share with the community.
 
-Las optimizaciones están basadas en:
-- Uso real en proyectos Python/TypeScript
-- Experiencia con Claude Desktop/Pro
-- Principios de token efficiency
+The optimizations are based on:
+- Real usage in Python/TypeScript projects
+- Experience with Claude Desktop/Pro
+- Token efficiency principles
 
-**Recomendación:** Prueba y ajusta según tu stack y preferencias.
+**Recommendation:** Try it and adjust to your stack and preferences.
 
 ## 📜 License
 
@@ -227,8 +233,8 @@ MIT © 2026 Iván Díaz
 
 ---
 
-**¿Útil?** Dale ⭐ y comparte con otros usuarios de Claude
+**Useful?** Give it a ⭐ and share it with other Claude users
 
-**¿Preguntas?** Abre un [issue](../../issues)
+**Questions?** Open an [issue](../../issues)
 
-**¿Mejoras?** Los PRs son bienvenidos 🚀
+**Improvements?** PRs are welcome 🚀
