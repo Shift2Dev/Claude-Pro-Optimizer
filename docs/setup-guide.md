@@ -1,55 +1,55 @@
 # Setup Guide
 
-Guía paso a paso para instalar y configurar Claude Pro Optimizer.
+Step-by-step guide to install and configure Claude Pro Optimizer.
 
-## 📋 Requisitos
+## 📋 Requirements
 
-- Claude Desktop instalado
-- Plan Claude Pro (recomendado)
-- Terminal (PowerShell en Windows, bash en Mac/Linux)
+- Claude Desktop installed
+- Claude Pro plan (recommended)
+- Terminal (PowerShell on Windows, bash on Mac/Linux)
 
-## 🚀 Instalación
+## 🚀 Installation
 
 ### Windows (PowerShell)
 
 ```powershell
-# 1. Navegar a tu directorio .claude
+# 1. Navigate to your .claude directory
 cd ~\.claude
 
-# 2. Crear carpeta skills si no existe
+# 2. Create skills folder if it doesn't exist
 New-Item -ItemType Directory -Force -Path skills
 
-# 3. Copiar configuraciones
-# Descarga el repo y ejecuta:
-Copy-Item -Path C:\ruta\al\repo\configs\global.md -Destination . -Force
-Copy-Item -Path C:\ruta\al\repo\configs\.claudeignore -Destination . -Force
-Copy-Item -Path C:\ruta\al\repo\configs\skills\smart-init -Destination skills\ -Recurse -Force
+# 3. Copy configurations
+# Download the repo and run:
+Copy-Item -Path C:\path\to\repo\configs\global.md -Destination . -Force
+Copy-Item -Path C:\path\to\repo\configs\.claudeignore -Destination . -Force
+Copy-Item -Path C:\path\to\repo\configs\skills\smart-init -Destination skills\ -Recurse -Force
 
-# 4. Verificar
+# 4. Verify
 ls
 ```
 
 ### Mac/Linux (bash)
 
 ```bash
-# 1. Navegar a tu directorio .claude
+# 1. Navigate to your .claude directory
 cd ~/.claude
 
-# 2. Crear carpeta skills si no existe
+# 2. Create skills folder if it doesn't exist
 mkdir -p skills
 
-# 3. Copiar configuraciones
-cp /ruta/al/repo/configs/global.md .
-cp /ruta/al/repo/configs/.claudeignore .
-cp -r /ruta/al/repo/configs/skills/smart-init skills/
+# 3. Copy configurations
+cp /path/to/repo/configs/global.md .
+cp /path/to/repo/configs/.claudeignore .
+cp -r /path/to/repo/configs/skills/smart-init skills/
 
-# 4. Verificar
+# 4. Verify
 ls -la
 ```
 
-## ✅ Verificación
+## ✅ Verification
 
-Después de instalar, tu directorio `~/.claude` debería verse así:
+After installing, your `~/.claude` directory should look like this:
 
 ```
 .claude/
@@ -60,146 +60,146 @@ Después de instalar, tu directorio `~/.claude` debería verse así:
         └── SKILL.md
 ```
 
-## 🎯 Primer Uso
+## 🎯 First Use
 
-### 1. Abrir un proyecto
+### 1. Open a project
 
-Abre cualquier proyecto en Claude Desktop.
+Open any project in Claude Desktop.
 
-### 2. Ejecutar smart-init
+### 2. Run smart-init
 
-En el chat, escribe:
+In the chat, type:
 
 ```
 /init
 ```
 
-### 3. Ver resultado
+### 3. View the result
 
-Claude analizará tu proyecto y generará `.claude/CLAUDE.md` automáticamente.
+Claude will analyze your project and automatically generate `.claude/CLAUDE.md`.
 
 ```powershell
-# Ver el archivo generado
+# View the generated file
 cat .claude/CLAUDE.md
 ```
 
-### 4. Editar si necesario
+### 4. Edit if needed
 
-El archivo está listo para usar, pero puedes personalizarlo:
+The file is ready to use, but you can customize it:
 
 ```powershell
 code .claude/CLAUDE.md
 ```
 
-## 🔧 Personalización
+## 🔧 Customization
 
-### Modificar global.md
+### Modify global.md
 
-Edita `~/.claude/global.md` para ajustar:
+Edit `~/.claude/global.md` to adjust:
 
 ```markdown
 ## Tools
-- OS: [Tu sistema operativo]
-- Terminal: [Tu terminal preferida]
-- Editor: [Tu editor]
+- OS: [Your operating system]
+- Terminal: [Your preferred terminal]
+- Editor: [Your editor]
 
 ## Code Style
-- [Tus preferencias de código]
+- [Your code preferences]
 ```
 
-### Modificar .claudeignore
+### Modify .claudeignore
 
-Añade patrones específicos de tu stack:
+Add patterns specific to your stack:
 
 ```
-# Ejemplo: Ignorar archivos Next.js
+# Example: Ignore Next.js files
 .next/
 out/
 
-# Ejemplo: Ignorar archivos de Rust
+# Example: Ignore Rust files
 target/debug/
 target/release/
 ```
 
-### Crear Skills Propios
+### Create Your Own Skills
 
-1. Crea carpeta en `~/.claude/skills/tu-skill/`
-2. Crea `SKILL.md` con estructura:
+1. Create a folder at `~/.claude/skills/your-skill/`
+2. Create `SKILL.md` with this structure:
 
 ```markdown
 ---
-name: tu-skill
-description: Qué hace tu skill
+name: your-skill
+description: What your skill does
 ---
 
-# Tu Skill
+# Your Skill
 
-Instrucciones de tu skill...
+Your skill instructions...
 ```
 
-Ver [Creating Skills](creating-skills.md) para más detalles.
+See [Creating Skills](creating-skills.md) for more details.
 
 ## 🐛 Troubleshooting
 
-### Skill no funciona
+### Skill not working
 
-**Problema:** `/init` no hace nada
+**Problem:** `/init` does nothing
 
-**Solución:**
-1. Verifica que el archivo está en `~/.claude/skills/smart-init/SKILL.md`
-2. Reinicia Claude Desktop
-3. Intenta de nuevo
+**Solution:**
+1. Verify the file is at `~/.claude/skills/smart-init/SKILL.md`
+2. Restart Claude Desktop
+3. Try again
 
-### Configuración no se aplica
+### Configuration not applied
 
-**Problema:** Claude no usa mi global.md
+**Problem:** Claude isn't using my global.md
 
-**Solución:**
-1. Verifica ruta: `~/.claude/global.md`
-2. Chequea formato Markdown válido
-3. Reinicia Claude Desktop
+**Solution:**
+1. Verify path: `~/.claude/global.md`
+2. Check for valid Markdown formatting
+3. Restart Claude Desktop
 
-### Smart-init genera mal el archivo
+### Smart-init generates the file incorrectly
 
-**Problema:** CLAUDE.md tiene placeholders
+**Problem:** CLAUDE.md has placeholders
 
-**Solución:**
-1. Verifica que tu proyecto tiene `package.json` o `pyproject.toml`
-2. Asegúrate que hay archivos de código en `src/` o similar
-3. Reporta un issue con ejemplo del proyecto
+**Solution:**
+1. Verify your project has `package.json` or `pyproject.toml`
+2. Make sure there are source files in `src/` or similar
+3. Report an issue with a project example
 
 ## 💡 Tips
 
 ### Token Efficiency
 
-- Usa `/btw` para preguntas cortas que no necesitan contexto
-- Usa `/compact` cuando el contexto se llene
-- Revisa periódicamente `.claudeignore` y añade ruido nuevo
+- Use `/btw` for quick questions that don't need context
+- Use `/compact` when context fills up
+- Periodically review `.claudeignore` and add new noise patterns
 
-### Workflow Óptimo
+### Optimal Workflow
 
-1. **Nuevo proyecto:** `/init` inmediatamente
-2. **Proyecto existente:** Añade `.claudeignore` primero
-3. **Equipos:** Comparte tus `.claude/` configs en el repo
+1. **New project:** run `/init` immediately
+2. **Existing project:** add `.claudeignore` first
+3. **Teams:** share your `.claude/` configs in the repo
 
 ### Best Practices
 
-- Commitea `.claude/CLAUDE.md` en tu repo
-- NO commitees `global.md` (es personal)
-- Ajusta smart-init defaults a tu stack preferido
+- Commit `.claude/CLAUDE.md` to your repo
+- Do NOT commit `global.md` (it's personal)
+- Adjust smart-init defaults to your preferred stack
 
-## 📚 Siguiente Paso
+## 📚 Next Steps
 
-- Lee [Token Optimization Theory](token-optimization-theory.md)
-- Ve ejemplos en [Workflow Demo](../examples/workflow-demo.md)
-- Aprende a crear skills en [Creating Skills](creating-skills.md)
+- Read [Token Optimization Theory](token-optimization-theory.md)
+- See examples in [Workflow Demo](../examples/workflow-demo.md)
+- Learn to create skills in [Creating Skills](creating-skills.md)
 
-## 🆘 Soporte
+## 🆘 Support
 
-¿Problemas? Abre un [issue](../../issues) con:
-- Tu OS y versión de Claude Desktop
-- Contenido de tu config que falla
-- Pasos para reproducir el problema
+Having issues? Open an [issue](../../issues) with:
+- Your OS and Claude Desktop version
+- Contents of the config that's failing
+- Steps to reproduce the problem
 
 ---
 

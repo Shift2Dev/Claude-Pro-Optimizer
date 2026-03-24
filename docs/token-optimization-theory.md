@@ -1,111 +1,111 @@
 # Token Optimization Theory
 
-Principios y técnicas para maximizar eficiencia en Claude Pro.
+Principles and techniques to maximize efficiency in Claude Pro.
 
-## 🎯 Por Qué Importa
+## 🎯 Why It Matters
 
-### Límites de Claude Pro
+### Claude Pro Limits
 
-Claude Pro tiene límites de uso diarios:
-- **Mensajes por día:** Limitados
-- **Tokens por mensaje:** Contabilizados
-- **Contexto acumulativo:** Se suma en conversaciones largas
+Claude Pro has daily usage limits:
+- **Messages per day:** Limited
+- **Tokens per message:** Counted
+- **Cumulative context:** Accumulates in long conversations
 
-**Cada token cuenta para estos límites.**
+**Every token counts toward these limits.**
 
-### El Problema de Prompts Ineficientes
+### The Inefficient Prompt Problem
 
 ```markdown
-❌ MAL (verbose, 150 tokens):
-"Hola, me gustaría que por favor me ayudaras a entender de manera 
-muy detallada y completa, con todos los detalles posibles, exactamente 
-qué es lo que hace este código y cómo funciona paso a paso cada una 
-de las líneas, porque necesito comprenderlo bien para mi proyecto..."
+❌ BAD (verbose, 150 tokens):
+"Hi, I would really appreciate it if you could please help me understand
+in great detail and completeness, with all possible details, exactly
+what this code does and how each line works step by step,
+because I need to understand it well for my project..."
 
-✅ BIEN (conciso, 25 tokens):
-"Explica este código línea por línea"
+✅ GOOD (concise, 25 tokens):
+"Explain this code line by line"
 ```
 
-**Ahorro:** 83% de tokens, mismo resultado.
+**Savings:** 83% fewer tokens, same result.
 
-## 🧠 Principios de Optimización
+## 🧠 Optimization Principles
 
-### 1. Eliminar Redundancia
+### 1. Eliminate Redundancy
 
-**Antes:**
+**Before:**
 ```
-Por favor, me gustaría que me ayudaras a...
-```
-
-**Después:**
-```
-Ayúdame a...
+Could you please help me to...
 ```
 
-**Regla:** Ve al grano. Claude entiende contexto implícito.
-
-### 2. Ser Específico, No Verbose
-
-**Antes:**
+**After:**
 ```
-Crea una función que tome como parámetros un número entero y otro 
-número entero y que retorne la suma de ambos números
+Help me...
 ```
 
-**Después:**
+**Rule:** Get to the point. Claude understands implicit context.
+
+### 2. Be Specific, Not Verbose
+
+**Before:**
 ```
-Función: suma de dos enteros
+Create a function that takes two integer parameters and
+returns the sum of both numbers
 ```
 
-**Regla:** Especificidad ≠ Verbosidad
-
-### 3. Usar Comandos Built-in
-
-**Antes:**
+**After:**
 ```
-Por favor lee este archivo y dime qué contiene
+Function: sum of two integers
 ```
 
-**Después:**
+**Rule:** Specificity ≠ Verbosity
+
+### 3. Use Built-in Commands
+
+**Before:**
 ```
-/view archivo.py
+Please read this file and tell me what it contains
 ```
 
-**Regla:** Usa herramientas nativas cuando existan.
+**After:**
+```
+/view file.py
+```
+
+**Rule:** Use native tools when they exist.
 
 ### 4. Batch Operations
 
-**Antes (3 mensajes):**
+**Before (3 messages):**
 ```
-1. "Crea función suma"
-2. "Ahora función resta"  
-3. "Ahora función multiplica"
-```
-
-**Después (1 mensaje):**
-```
-Crea funciones: suma, resta, multiplica
+1. "Create sum function"
+2. "Now subtract function"
+3. "Now multiply function"
 ```
 
-**Regla:** Agrupa requests relacionados.
+**After (1 message):**
+```
+Create functions: sum, subtract, multiply
+```
+
+**Rule:** Group related requests.
 
 ### 5. Context Management
 
-**Antes:**
+**Before:**
 ```
-[Todo el historial de 50 mensajes cargado]
-```
-
-**Después:**
-```
-/compact  # Compacta contexto automáticamente
+[Full 50-message history loaded]
 ```
 
-**Regla:** Usa `/compact` cuando contexto >50%.
+**After:**
+```
+/compact  # Compacts context automatically
+```
 
-## 🛠️ Técnicas Avanzadas
+**Rule:** Use `/compact` when context is >50% full.
 
-### A. Configuración Global
+## 🛠️ Advanced Techniques
+
+### A. Global Configuration
 
 `~/.claude/global.md`:
 
@@ -116,207 +116,206 @@ Crea funciones: suma, resta, multiplica
 - Batch related edits in single operation
 ```
 
-**Efecto:** Claude aplica estas reglas automáticamente.
+**Effect:** Claude applies these rules automatically.
 
 ### B. Custom Ignorefile
 
-`.claudeignore` optimizado:
+Optimized `.claudeignore`:
 
 ```
-# Bloquear ruido
+# Block noise
 node_modules/
 *.log
 __pycache__/
 
-# Permitir cuando necesario
-# dist/  ← NO bloqueado por defecto
+# Allow when needed
+# dist/  ← NOT blocked by default
 ```
 
-**Efecto:** Claude no lee 10,000 archivos de node_modules.
+**Effect:** Claude doesn't read 10,000 files from node_modules.
 
 ### C. Smart-Init
 
-Generar configs automáticamente:
+Auto-generate configs:
 
 ```
 /init
 ```
 
-**Efecto:** Setup perfecto en segundos, sin manual config.
+**Effect:** Perfect setup in seconds, no manual config.
 
 ### D. Explicit File Reading
 
-**Antes:**
+**Before:**
 ```
-"Lee todos los archivos del proyecto"
+"Read all the project files"
 ```
 
-**Después:**
+**After:**
 ```
 /view src/main.py
 /view tests/test_main.py
 ```
 
-**Regla:** Especifica qué leer, no "todo".
+**Rule:** Specify what to read, not "everything".
 
-## 📊 Estrategias por Caso de Uso
+## 📊 Strategies by Use Case
 
 ### Debugging
 
 ```markdown
-❌ "El código no funciona, ayúdame"
-✅ "Error en línea 42: NameError 'x' not defined"
+❌ "The code doesn't work, help me"
+✅ "Error on line 42: NameError 'x' not defined"
 ```
 
 ### Code Review
 
 ```markdown
-❌ "Revisa todo este archivo"
-✅ "Revisa función `process_data()` (líneas 30-45)"
+❌ "Review this entire file"
+✅ "Review function `process_data()` (lines 30-45)"
 ```
 
 ### Refactoring
 
 ```markdown
-❌ "Mejora el código"
-✅ "Refactor: extraer lógica de validación a función separada"
+❌ "Improve the code"
+✅ "Refactor: extract validation logic into a separate function"
 ```
 
 ### Documentation
 
 ```markdown
-❌ "Documenta este proyecto completo"
-✅ "Documenta función `calculate_metrics()`"
+❌ "Document this entire project"
+✅ "Document function `calculate_metrics()`"
 ```
 
-## 🎯 Workflow Óptimo
+## 🎯 Optimal Workflow
 
-### Setup Inicial (una vez)
+### Initial Setup (once)
 
-1. Instalar configs de este repo
-2. Configurar `.claudeignore` para tu stack
-3. Ejecutar `/init` en proyectos
+1. Install configs from this repo
+2. Configure `.claudeignore` for your stack
+3. Run `/init` in projects
 
-### Uso Diario
-
-```
-1. Mensaje específico y conciso
-2. Usar /btw para quick questions
-3. Batch operations relacionadas
-4. /compact cuando contexto alto
-5. Verificar límites en settings
-```
-
-### Conversaciones Largas
+### Daily Use
 
 ```
-- Cada 10-15 mensajes → /compact
-- Si hitting límites → Nueva conversación
-- Exportar info importante antes de compact
+1. Specific, concise message
+2. Use /btw for quick questions
+3. Batch related operations
+4. /compact when context is high
+5. Check limits in settings
 ```
 
-## 📈 Métricas de Éxito
+### Long Conversations
 
-### Antes de Optimizar
+```
+- Every 10-15 messages → /compact
+- If hitting limits → New conversation
+- Export important info before compacting
+```
 
-- Prompts: ~200 tokens promedio
-- Mensajes útiles/día: ~30
-- Hit límite: frecuente
+## 📈 Success Metrics
 
-### Después de Optimizar
+### Before Optimizing
 
-- Prompts: ~50 tokens promedio
-- Mensajes útiles/día: ~80
-- Hit límite: raro
+- Prompts: ~200 tokens average
+- Useful messages/day: ~30
+- Hit limit: frequently
 
-**Resultado:** 2.5x más conversaciones con mismo plan.
+### After Optimizing
+
+- Prompts: ~50 tokens average
+- Useful messages/day: ~80
+- Hit limit: rarely
+
+**Result:** 2.5x more conversations with the same plan.
 
 ## 🔍 Anti-Patterns
 
-### ❌ Sobre-optimización
+### ❌ Over-optimization
 
 ```
-"fnc sum(a,b)ret a+b"  # Ilegible
+"fnc sum(a,b)ret a+b"  # Unreadable
 ```
 
-**Balance:** Claridad > Tokens extremos
+**Balance:** Clarity > extreme token savings
 
-### ❌ Omitir Contexto Crítico
-
-```
-"Arregla el bug"  # ¿Qué bug?
-```
-
-**Balance:** Específico ≠ Mínimo
-
-### ❌ Abusar de /compact
+### ❌ Omitting Critical Context
 
 ```
-/compact después de cada mensaje
+"Fix the bug"  # Which bug?
 ```
 
-**Balance:** Compactar cada 10-15 mensajes
+**Balance:** Specific ≠ Minimal
 
-## 💡 Tips Avanzados
+### ❌ Overusing /compact
 
-### 1. Use Markdown Efficientemente
+```
+/compact after every message
+```
+
+**Balance:** Compact every 10-15 messages
+
+## 💡 Advanced Tips
+
+### 1. Use Markdown Efficiently
 
 ```markdown
-Antes: "La función debe hacer X, Y, y Z"
+Before: "The function must do X, Y, and Z"
 
-Después:
-Función debe:
+After:
+Function must:
 - X
-- Y  
+- Y
 - Z
 ```
 
-### 2. Code Snippets Parciales
+### 2. Partial Code Snippets
 
 ```markdown
-Antes: [Pegar 500 líneas de código]
+Before: [Paste 500 lines of code]
 
-Después: "Ver src/main.py líneas 100-120"
+After: "See src/main.py lines 100-120"
 ```
 
-### 3. Aliases Mentales
+### 3. Mental Aliases
 
 ```markdown
-Antes: "El sistema de procesamiento de datos"
+Before: "The data processing system"
 
-Después (primera mención):
-"El sistema de procesamiento de datos (SPD)"
+After (first mention):
+"The data processing system (DPS)"
 
-Después (resto):
-"SPD debe..."
+After (rest):
+"DPS should..."
 ```
 
-## 📚 Referencias
+## 📚 References
 
-- [Setup Guide](setup-guide.md) - Cómo instalar
-- [Creating Skills](creating-skills.md) - Automatización avanzada
-- [Workflow Demo](../examples/workflow-demo.md) - Ejemplos reales
+- [Setup Guide](setup-guide.md) - How to install
+- [Creating Skills](creating-skills.md) - Advanced automation
+- [Workflow Demo](../examples/workflow-demo.md) - Real examples
 
-## 🎓 Ejercicio
+## 🎓 Exercise
 
-**Optimiza este prompt:**
-
-```
-"Hola Claude, espero que estés bien. Me gustaría que por favor me 
-ayudaras con algo. Tengo un proyecto en Python y necesito que me 
-ayudes a crear una función que reciba como parámetros dos números 
-enteros y que retorne la suma de esos dos números. ¿Podrías por 
-favor ayudarme con eso? Gracias!"
-```
-
-**Solución:**
+**Optimize this prompt:**
 
 ```
-"Función Python: suma dos enteros"
+"Hi Claude, hope you're doing well. I'd really appreciate it if you could
+please help me with something. I have a Python project and I need you to
+help me create a function that takes two integer parameters and returns
+the sum of those two numbers. Could you please help me with that? Thanks!"
 ```
 
-**Reducción:** ~90% de tokens, claridad mantenida.
+**Solution:**
+
+```
+"Python function: sum two integers"
+```
+
+**Reduction:** ~90% fewer tokens, clarity maintained.
 
 ---
 
-**Recuerda:** Eficiencia ≠ Sacrificar claridad. El objetivo es comunicación clara con mínimo desperdicio. 🎯
+**Remember:** Efficiency ≠ Sacrificing clarity. The goal is clear communication with minimum waste. 🎯
