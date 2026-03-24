@@ -1,0 +1,59 @@
+# Dependencies (nunca necesarios)
+node_modules/
+venv/
+env/
+.venv/
+__pycache__/
+*.pyc
+.m2/
+
+# IDE config (no es código)
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs (ruido)
+*.log
+logs/
+
+# OS files (ruido)
+.DS_Store
+Thumbs.db
+
+# Lock files (muy largos, poco valor)
+package-lock.json
+yarn.lock
+poetry.lock
+
+# Build artifacts temporales (Java)
+target/classes/
+target/test-classes/
+target/surefire-reports/
+
+# Python cache
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Archivos enormes de datos brutos
+*.parquet
+data/raw/
+datasets/training/
+*.db
+*.sqlite
+
+# Source maps (generados, muy grandes)
+*.map
+
+# IMPORTANTE: dist/, build/, target/ NO están bloqueados
+# Claude puede necesitar:
+# - Analizar binarios compilados
+# - Modificar archivos en build/
+# - Trabajar con executables en dist/
+# 
+# Si quieres bloquearlos, añade explícitamente:
+# dist/
+# build/
+# target/
